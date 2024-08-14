@@ -1,0 +1,93 @@
+# User-specific files
+.vscode/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Logs
+*.log
+logs/
+
+# Visual Studio Code
+.vscode/*
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+bin/
+obj/
+
+# Visual Studio 2019/2022
+.vs/
+.vscode/
+*.VC.db
+*.opendb
+*.pidb
+*.aps
+*.breakpoints
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# NuGet Packages
+*.nupkg
+packages/
+**/packages/*
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+[Tt]est[Rr]esults/
+build/
+out/
+*.exe
+*.dll
+*.pdb
+*.app
+*.ipa
+
+# Rider IDE
+.idea/
+
+# Local history for Visual Studio
+.localhistory/
+
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Coverage and test results
+TestResults/
+coverage/
+
+# Optional Rider IDE directories
+.idea/
+.idea_modules/
+.idea/workspace.xml
+.idea/tasks.xml
+
+# MacOS system files
+.DS_Store
+
+# JetBrains Rider
+.idea
+.idea/*
+
+# Backup files
+*.bak
+*.swp
+*~
+
+# node_modules (if you're using npm or yarn for front-end)
+node_modules/
