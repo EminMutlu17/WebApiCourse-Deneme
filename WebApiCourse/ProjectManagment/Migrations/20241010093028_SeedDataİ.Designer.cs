@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Repository;
 
@@ -11,9 +12,10 @@ using Repository;
 namespace ProjectManagment.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    partial class RepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20241010093028_SeedDataİ")]
+    partial class SeedDataİ
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,15 +72,6 @@ namespace ProjectManagment.Migrations
                             Age = 23,
                             FirstName = "Taner",
                             LastName = "Bilinmiyor",
-                            Position = "Mid Developer",
-                            ProjectId = new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7")
-                        },
-                        new
-                        {
-                            Id = new Guid("e47a2f9b-7e6a-4b4e-bf78-d9e8e2d5cbb3"),
-                            Age = 31,
-                            FirstName = "Ali",
-                            LastName = "Midci",
                             Position = "Mid Developer",
                             ProjectId = new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7")
                         });

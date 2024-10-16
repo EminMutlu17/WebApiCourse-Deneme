@@ -12,8 +12,8 @@ using Repository;
 namespace ProjectManagment.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20241005104210_CreateWebApiCourseDb")]
-    partial class CreateWebApiCourseDb
+    [Migration("20241006115648_CreateDb")]
+    partial class CreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -26,12 +26,10 @@ namespace ProjectManagment.Migrations
 
             modelBuilder.Entity("Entities.Models.Employee", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("EmployeeId");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<int>("Age")
                         .HasColumnType("int");

@@ -2,6 +2,8 @@
 using LoggerService;
 using Microsoft.EntityFrameworkCore;
 using Repository;
+using Service;
+using Service.Contracts;
 
 namespace ProjectManagment.Extensions
 {
@@ -39,6 +41,46 @@ namespace ProjectManagment.Extensions
 
         }
 
+  
+
+
+
+               public static void ConfigureRepositoryManager(this IServiceCollection services)
+        {
+            services.AddScoped<IProjectRepository, ProjectRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
+            // Lazy<IProjectRepository> ve Lazy<IEmployeeRepository> ekleme
+            services.AddScoped<Lazy<IProjectRepository>>(provider =>
+                new Lazy<IProjectRepository>(() => provider.GetRequiredService<IProjectRepository>()));
+
+            services.AddScoped<Lazy<IEmployeeRepository>>(provider =>
+                new Lazy<IEmployeeRepository>(() => provider.GetRequiredService<IEmployeeRepository>()));
+
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
+        }
+
+
+
+
+
+        public static void ConfiugreServiceManager(this IServiceCollection services)
+        {
+
+            // ServiceManager ve ilgili servisleri ekliyoruz
+            services.AddScoped<IServiceManager, ServiceManager>();
+
+            // Project Service ve Lazy yükleme mantığı
+            services.AddScoped<IProjectService, ProjectService>();
+            services.AddScoped<Lazy<IProjectService>>(provider =>
+                new Lazy<IProjectService>(() => provider.GetRequiredService<IProjectService>()));
+
+            // Employee Service ve Lazy yükleme mantığı
+            services.AddScoped<IEmployeeService, EmployeeService>();
+            services.AddScoped<Lazy<IEmployeeService>>(provider =>
+                new Lazy<IEmployeeService>(() => provider.GetRequiredService<IEmployeeService>()));
+
+        }
 
 
     }

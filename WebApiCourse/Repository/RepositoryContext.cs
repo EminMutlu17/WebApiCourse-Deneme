@@ -1,5 +1,6 @@
 ﻿using Entities.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace Repository
 {
@@ -11,6 +12,11 @@ namespace Repository
             
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+        }
         public DbSet<Project> Projects { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
