@@ -12,7 +12,7 @@ using Repository;
 namespace ProjectManagment.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20241006115648_CreateDb")]
+    [Migration("20241017112647_CreateDb")]
     partial class CreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,6 +55,35 @@ namespace ProjectManagment.Migrations
                     b.HasIndex("ProjectId");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("6595d486-6a51-49c3-b4a3-b55f432f2a61"),
+                            Age = 24,
+                            FirstName = "Emre",
+                            LastName = "CEVİK",
+                            Position = "Junior Developer",
+                            ProjectId = new Guid("a88e2ba1-f7cc-4d6b-a995-69575dc7e8b7")
+                        },
+                        new
+                        {
+                            Id = new Guid("d66f8e6b-b499-4f68-8595-afeb4d95a5db"),
+                            Age = 23,
+                            FirstName = "Taner",
+                            LastName = "Bilinmiyor",
+                            Position = "Mid Developer",
+                            ProjectId = new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7")
+                        },
+                        new
+                        {
+                            Id = new Guid("e47a2f9b-7e6a-4b4e-bf78-d9e8e2d5cbb3"),
+                            Age = 31,
+                            FirstName = "Ali",
+                            LastName = "Midci",
+                            Position = "Mid Developer",
+                            ProjectId = new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7")
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Project", b =>
@@ -81,6 +110,22 @@ namespace ProjectManagment.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("Projects");
+
+                    b.HasData(
+                        new
+                        {
+                            ID = new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7"),
+                            Description = "Web Application Programming Interface",
+                            Field = "Computer Science",
+                            Name = "Asp.Net Core Web API Project 1"
+                        },
+                        new
+                        {
+                            ID = new Guid("a88e2ba1-f7cc-4d6b-a995-69575dc7e8b7"),
+                            Description = "Another Web Application Programming Interface",
+                            Field = "Information Technology",
+                            Name = "Asp.Net Core Web API Project 2"
+                        });
                 });
 
             modelBuilder.Entity("Entities.Models.Employee", b =>

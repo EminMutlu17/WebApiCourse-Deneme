@@ -13,12 +13,14 @@ namespace Service
 
         private readonly Lazy<IProjectService> _projectService;
         private readonly Lazy<IEmployeeService> _employeeService;
+        
 
 
-        public ServiceManager(IRepositoryManager repository, ILoggerManager loggerManager, Lazy<IProjectService> projectService, Lazy<IEmployeeService> employeeService)
+        public ServiceManager(Lazy<IProjectService> projectService, Lazy<IEmployeeService> employeeService )
         {
             _projectService = projectService;
             _employeeService = employeeService;
+           
 
         }
 

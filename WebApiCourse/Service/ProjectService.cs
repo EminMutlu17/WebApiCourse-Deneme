@@ -1,9 +1,13 @@
-﻿using Contracts;
+﻿using AutoMapper;
+using Contracts;
+using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
+using Shareds.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,33 +21,67 @@ namespace Service
 
         private readonly ILoggerManager _loggerManager ;
 
-        public ProjectService(IRepositoryManager repositoryManager, ILoggerManager loggerManager)
+        private readonly IMapper _mapper ;
+
+        public ProjectService(IRepositoryManager repositoryManager, ILoggerManager loggerManager, IMapper mapper)
         {
             _repositoryManager = repositoryManager;
             _loggerManager = loggerManager;
+            _mapper = mapper;
         }
 
-        public IEnumerable<Project> GetAllProjects(bool trachChanges)
+      
+        public IEnumerable<ProjectDto> GetAllProjects(bool trachChanges)
         {
-           var projects = _repositoryManager.Project.GetAllProjects(trachChanges); 
-            return projects;
+           var projects = _repositoryManager.Project.GetAllProjects(trachChanges);
+
+            // Entity -> Dto 
+
+            var projectDtos = _mapper.Map<IEnumerable<ProjectDto>>(projects);
+           return projectDtos;
         }
 
-        public Project GetOneProjectById(Guid id, bool trackChanges)
+        public ProjectDto GetOneProjectById(Guid id, bool trackChanges)
         {
-            try
-            {
-               return  _repositoryManager.Project.GetOneProjectById(id, trackChanges);
+           
+                
+               var project =  _repositoryManager.Project.GetOneProjectById(id, trackChanges);
 
                 
+                 if (project == null)
+                {
+                throw new ProjectNotFoundException(id);
+
+                }
+
+               
+              // Entity -> Dto 
+
+               var projectDto = _mapper.Map<ProjectDto>(project);
+               return projectDto; 
+
+               
                 
-            }
-            catch(Exception ex) 
-            {
-                _loggerManager.LogError("ProjectRepository.GetProject() : " + ex.Message);
-                throw;
-            }
+      
         }
+
+        public ProjectDto CreateOneProject(ProjectDtoForCreation projectDtoForCreation)
+        {
+          // Dto -> Entity 
+
+            var entity = _mapper.Map<Project>(projectDtoForCreation);
+
+
+          // Repo -> Save 
+
+            _repositoryManager.Project.CreateProject(entity);
+            _repositoryManager.Save();
+
+          // Entity -> Dto
+
+            return _mapper.Map<ProjectDto>(entity);
+        }
+
     }
 
 }

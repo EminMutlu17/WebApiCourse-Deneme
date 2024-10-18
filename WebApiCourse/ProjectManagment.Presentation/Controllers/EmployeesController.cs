@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
+using Shareds.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace ProjectManagment.Presentation.Controllers
 {
@@ -24,34 +26,37 @@ namespace ProjectManagment.Presentation.Controllers
         [HttpGet]
         public IActionResult GetAllEmployeeByProjectId(Guid  projectId)
         {
-            try
-            {
+           
+            
                 var employeeList = _servicemanager.EmployeeService.GetAllEmployeesByProjectId(projectId, false);
                 return Ok(employeeList);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(500,"Internal Server Error : ");
-            }
+           
         }
 
-        [HttpGet ("{id:guid}")]
+        [HttpGet ("{id:guid}" , Name ="GetOneEmployeeByProjectIdAndId")]
 
         public IActionResult GetOneEmployeeByProjectId(Guid projectId , Guid id) {
-            try
-            {
+           
                 var employee =  _servicemanager.EmployeeService.GetOneEmployeeByProjectId(projectId , id , false);
                 return Ok(employee);
 
-            }
-            catch (Exception ex)
-            {
-
-                return StatusCode(500, "Internal Server Error ! ");
-
-            }
+            
         }
 
+        [HttpPost]
+        public IActionResult CreateOneEmployeeByProjectId(Guid projectId , EmployeeDtoForCreation employeeDtoForCreation) 
+        {
+
+            EmployeeDto employee = _servicemanager.EmployeeService.CreateOneEmployeeByProjectId(projectId, employeeDtoForCreation, true);
+            
+
+            return CreatedAtRoute("GetOneEmployeeByProjectIdAndId",
+                new {projectId , id = employee.Id},
+                employee);
+
+
+
+        }
   
     }
 }

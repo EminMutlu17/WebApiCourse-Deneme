@@ -46,6 +46,31 @@ namespace ProjectManagment.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "ProjectId", "Description", "Field", "ImageUrl", "Name" },
+                values: new object[] { new Guid("a88e2ba1-f7cc-4d6b-a995-69575dc7e8b7"), "Another Web Application Programming Interface", "Information Technology", null, "Asp.Net Core Web API Project 2" });
+
+            migrationBuilder.InsertData(
+                table: "Projects",
+                columns: new[] { "ProjectId", "Description", "Field", "ImageUrl", "Name" },
+                values: new object[] { new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7"), "Web Application Programming Interface", "Computer Science", null, "Asp.Net Core Web API Project 1" });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "EmployeeId", "Age", "FirstName", "LastName", "Position", "ProjectId" },
+                values: new object[] { new Guid("6595d486-6a51-49c3-b4a3-b55f432f2a61"), 24, "Emre", "CEVİK", "Junior Developer", new Guid("a88e2ba1-f7cc-4d6b-a995-69575dc7e8b7") });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "EmployeeId", "Age", "FirstName", "LastName", "Position", "ProjectId" },
+                values: new object[] { new Guid("d66f8e6b-b499-4f68-8595-afeb4d95a5db"), 23, "Taner", "Bilinmiyor", "Mid Developer", new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7") });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "EmployeeId", "Age", "FirstName", "LastName", "Position", "ProjectId" },
+                values: new object[] { new Guid("e47a2f9b-7e6a-4b4e-bf78-d9e8e2d5cbb3"), 31, "Ali", "Midci", "Mid Developer", new Guid("f98e1ba1-f7cc-4d6b-a995-69575dc7e8b7") });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_ProjectId",
                 table: "Employees",

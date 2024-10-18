@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Shareds.DTO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,8 @@ namespace Service.Contracts
     public  interface IProjectService
 
     {
-        IEnumerable<Project> GetAllProjects(bool trackChanges);
-        Project GetOneProjectById(Guid id, bool trackChanges);
+        ProjectDto CreateOneProject(ProjectDtoForCreation projectDtoForCreation);
+        IEnumerable<ProjectDto> GetAllProjects(bool trackChanges);
+        ProjectDto GetOneProjectById(Guid id, bool trackChanges);
     }
 }
